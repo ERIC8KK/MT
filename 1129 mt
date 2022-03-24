@@ -55,6 +55,37 @@ print(df["Total Charged"].mean())
 print(df["Total Charged"].max())
 print(df["Total Charged"]. min())
 print(df["Total Charged"].std())
+
+new_col_month = list(range(len(df)))
+orderdatalist =df["Order Date"].values.tolist()
+for row in range(len(orderdatalist)):
+    data=orderdatalist[row].split("/")
+    
+    if data[0]=="01"or data [0]=="1":
+        new_col_month[row]="Jan"
+    elif data[0]=="02"or data [0]=="2":
+        new_col_month[row]="Feb"
+    elif data[0]=="03"or data [0]=="3":
+        new_col_month[row]="Mar"
+    elif data[0]=="04"or data [0]=="4":
+        new_col_month[row]="Apr"
+    elif data[0]=="05"or data [0]=="5":
+        new_col_month[row]="May"
+    elif data[0]=="06"or data [0]=="6":
+        new_col_month[row]="June"
+    elif data[0]=="07"or data [0]=="7":
+        new_col_month[row]="July"
+    elif data[0]=="08"or data [0]=="8":
+        new_col_month[row]="Aug"
+    elif data[0]=="09"or data [0]=="9":
+        new_col_month[row]="Sep"
+    elif data[0]=="10"or data [0]=="10":
+        new_col_month[row]="Oct"
+    elif data[0]=="11"or data [0]=="11":
+        new_col_month[row]="Nov"
+    elif data[0]=="12"or data [0]=="12":
+        new_col_month[row]="Dec"
+        
 df["Tax Charged"] = df["Tax Charged"].str.replace('$','').astype(float)
 df.head()
 print(df["Tax Charged"].sum())
