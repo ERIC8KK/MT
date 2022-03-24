@@ -56,10 +56,12 @@ print(df["Total Charged"].max())
 print(df["Total Charged"]. min())
 print(df["Total Charged"].std())
 
-new_col_month = list(range(len(df)))
+
+month = list(range(len(df)))
 orderdatalist =df["Order Date"].values.tolist()
 for row in range(len(orderdatalist)):
     data=orderdatalist[row].split("/")
+    
     
     if data[0]=="01"or data [0]=="1":
         new_col_month[row]="Jan"
@@ -79,12 +81,31 @@ for row in range(len(orderdatalist)):
         new_col_month[row]="Aug"
     elif data[0]=="09"or data [0]=="9":
         new_col_month[row]="Sep"
-    elif data[0]=="10"or data [0]=="10":
+    elif data[0]=="10":
         new_col_month[row]="Oct"
-    elif data[0]=="11"or data [0]=="11":
+    elif data[0]=="11":
         new_col_month[row]="Nov"
-    elif data[0]=="12"or data [0]=="12":
+    elif data[0]=="12":
         new_col_month[row]="Dec"
+    
+df.insert(loc=1, column ="ordering month",value=month)
+df_month = df.loc[:,["Order Date","ordering month","Total Charged"]]
+print(df_month.groupby("ordering month").sum())
+import matplotlib.pyplot as plt
+import numpy as np
+
+y = np.array([84.55,51.53,453.22,18.01,47.59,0,148.95,752.38,300.8,210.36,165.05,91.23])
+mylabels=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"]
+plt.pie(y, labels = mylabels)
+plt.show()
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.array(["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"])
+y = np.array([84.55,51.53,453.22,18.01,47.59,0,148.95,752.38,300.8,210.36,165.05,91.23])
+plt.bar(x,y,)
+plt.show()
+df_month.plot()
+plt.show()
         
 df["Tax Charged"] = df["Tax Charged"].str.replace('$','').astype(float)
 df.head()
