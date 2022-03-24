@@ -1,0 +1,126 @@
+# Question 1
+import matplotlib.pyplot as plt
+import numpy as np
+f=open("numbers.txt","r")
+a=f.read()
+f.close()
+
+nums={}
+
+for i in a:
+    if (i>="0")&(i<="9"):
+        if i in nums:
+            nums[i]+=1
+        else:
+            nums[i]=1
+    else:
+        continue
+
+nums=dict(nums.items())
+
+print("output :")
+for i in nums:
+    print("\t",i,":",nums[i])
+
+print()
+print("explanation: ",end="")
+a=list(nums.keys())
+print(f"here {a[0]} occurs {nums[a[0]]}times,{a[1]} ")
+print(f" occurs{nums[a[1]]} times and so on...")
+
+x=nums.keys()
+y=nums.values()
+plt.bar(x,y)
+plt.title("freq")
+plt.show()
+
+import json
+with open("./freq.json","w")as out:
+    json.dump(nums, out)
+    
+    
+    
+# Question 2
+
+import pandas as pd
+
+df = pd.read_csv('Amazon.csv')
+df.head()
+df = df.fillna(0)
+df.head()
+df["Total Charged"] = df["Total Charged"].str.replace('$','').astype(float)
+df.head()
+print(df["Total Charged"].sum())
+print(df["Total Charged"].mean())
+print(df["Total Charged"].max())
+print(df["Total Charged"]. min())
+print(df["Total Charged"].std())
+df["Tax Charged"] = df["Tax Charged"].str.replace('$','').astype(float)
+df.head()
+print(df["Tax Charged"].sum())
+print(df["Tax Charged"].sum() / df["Total Charged"].sum())
+df['Order Date'] = pd.to_datetime(df['Order Date'])
+df.head()
+df.plot.bar(x='Order Date', y='Total Charged', rot=90, figsize=(20,10))
+df_17=df.loc[0:5,["Total Charged"]]
+print(df_17["Total Charged"].sum())
+df_18=df.loc[6:18,["Total Charged"]]
+print(df_18["Total Charged"].sum())
+df_19=df.loc[19:34,["Total Charged"]]
+print(df_19["Total Charged"].sum())
+df_20=df.loc[35:42,["Total Charged"]]
+print(df_20["Total Charged"].sum())
+df_21=df.loc[43:61,["Total Charged"]]
+print(df_21["Total Charged"].sum())
+cost2017 = df.loc[0:5,["Total Charged"]]
+cost2018 = df.loc[6:18,["Total Charged"]]
+cost2019 = df.loc[19:34,["Total Charged"]]
+cost2020 = df.loc[35:42,["Total Charged"]]
+cost2021 = df.loc[43:61,["Total Charged"]]
+print(cost2017)
+print(cost2018)
+print(cost2019)
+print(cost2020)
+print(cost2021)
+import matplotlib.pyplot as plt
+import numpy as np
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+y = np.array([df_17["Total Charged"].sum(), df_18["Total Charged"].sum(), df_19["Total Charged"].sum(), df_20["Total Charged"].sum(),df_21["Total Charged"].sum()])
+mylabels=["2017total cost","2018total cost","2019total cost","2020total cost","2021total cost"]
+plt.pie(y, labels = mylabels)
+plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.array(["2017","2018","2019","2020","2021"])
+y = np.array([df_17["Total Charged"].sum(), df_18["Total Charged"].sum(), df_19["Total Charged"].sum(), df_20["Total Charged"].sum(),df_21["Total Charged"].sum()])
+plt.bar(x,y,)
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+df_17.plot()
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+df_18.plot()
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+df_19.plot()
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+df_20.plot()
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+df_21.plot()
+plt.show()
+
+daily_orders = df.groupby('Order Date').sum()["Total Charged"]
+daily_orders.head()
+daily_orders.plot.bar(figsize=(20,10))
+daily_orders.plot.pie(figsize=(20,10))
