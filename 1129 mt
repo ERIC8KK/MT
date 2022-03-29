@@ -188,6 +188,33 @@ import matplotlib.pyplot as plt
 df_21.plot()
 plt.show()
 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# max(len(df_17),len(df_18),len(df_19),len(df_20),len(df_21))
+x17=np.arrange(len(df_17))
+y17=df_17["Total Charged"].to_numpy()
+plt.plot(x17,y17)
+
+x18=np.arrange(len(df_18))
+y18=df_18["Total Charged"].to_numpy()
+plt.plot(x18,y18)
+
+x19=np.arrange(len(df_19))
+y19=df_19["Total Charged"].to_numpy()
+plt.plot(x19,y19)
+
+x20=np.arrange(len(df_20))
+y20=df_20["Total Charged"].to_numpy()
+plt.plot(x20,y20)
+
+x21=np.arrange(len(df_21))
+y17=df_21["Total Charged"].to_numpy()
+
+plt.plot(x21,y21)
+
+plt.show()
+
 daily_orders = df.groupby('Order Date').sum()["Total Charged"]
 daily_orders.head()
 daily_orders.plot.bar(figsize=(20,10))
