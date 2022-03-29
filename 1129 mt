@@ -94,10 +94,26 @@ print(df_month.groupby("ordering month").sum())
 import matplotlib.pyplot as plt
 import numpy as np
 
-y = np.array([84.55,51.53,453.22,18.01,47.59,0,148.95,752.38,300.8,210.36,165.05,91.23])
-mylabels=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"]
-plt.pie(y, labels = mylabels)
-plt.show()
+import matplotlib.pyplot as plt
+import numpy as np
+
+#  type(df_month.groupby("ordering month").sum())
+
+df_month_sum = df_month.groupby("ordering month").sum()
+
+# df_month_sum
+
+df_month_sum.plot(kind='pie', x='Order Month', y='Total Charged', title = 'Sum of Total Charged', 
+cmap='Dark2', autopct="%.1f%%", figsize = (10,6), legend=False);
+
+# y = np.array([84.55,51.53,453.22,18.01,47.59,0,148.95,752.38,300.8,210.36,165.05,91.23])
+
+# y = df.month.groupby("")
+
+# mylabels=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"]
+# plt.pie(y, labels = mylabels)
+# plt.show()
+
 import matplotlib.pyplot as plt
 import numpy as np
 x = np.array(["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"])
